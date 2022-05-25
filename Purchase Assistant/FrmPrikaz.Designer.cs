@@ -32,6 +32,7 @@
             this.dgvPrikaz = new System.Windows.Forms.DataGridView();
             this.btnAzuriranje = new System.Windows.Forms.Button();
             this.btnBrisanje = new System.Windows.Forms.Button();
+            this.cboPretrazivanje = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,11 +44,12 @@
             this.btnUnos.TabIndex = 0;
             this.btnUnos.Text = "Nova narudžbenica";
             this.btnUnos.UseVisualStyleBackColor = true;
+            this.btnUnos.Click += new System.EventHandler(this.btnUnos_Click);
             // 
             // dgvPrikaz
             // 
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPrikaz.Location = new System.Drawing.Point(12, 24);
+            this.dgvPrikaz.Location = new System.Drawing.Point(12, 53);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.Size = new System.Drawing.Size(776, 323);
             this.dgvPrikaz.TabIndex = 1;
@@ -70,11 +72,20 @@
             this.btnBrisanje.Text = "Brisanje narudžbenice";
             this.btnBrisanje.UseVisualStyleBackColor = true;
             // 
+            // cboPretrazivanje
+            // 
+            this.cboPretrazivanje.FormattingEnabled = true;
+            this.cboPretrazivanje.Location = new System.Drawing.Point(12, 26);
+            this.cboPretrazivanje.Name = "cboPretrazivanje";
+            this.cboPretrazivanje.Size = new System.Drawing.Size(179, 21);
+            this.cboPretrazivanje.TabIndex = 4;
+            // 
             // FrmPrikaz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cboPretrazivanje);
             this.Controls.Add(this.btnBrisanje);
             this.Controls.Add(this.btnAzuriranje);
             this.Controls.Add(this.dgvPrikaz);
@@ -92,6 +103,7 @@
         private System.Windows.Forms.DataGridView dgvPrikaz;
         private System.Windows.Forms.Button btnAzuriranje;
         private System.Windows.Forms.Button btnBrisanje;
+        private System.Windows.Forms.ComboBox cboPretrazivanje;
     }
 }
 

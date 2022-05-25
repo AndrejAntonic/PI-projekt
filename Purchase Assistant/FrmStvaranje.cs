@@ -10,16 +10,21 @@ using System.Windows.Forms;
 
 namespace Purchase_Assistant
 {
-    public partial class FrmPrikaz : Form
+    public partial class FrmStvaranje : Form
     {
-        public FrmPrikaz()
+        public FrmStvaranje()
         {
             InitializeComponent();
         }
 
-        private void btnUnos_Click(object sender, EventArgs e)
+        private void btnGotovo_Click(object sender, EventArgs e)
         {
-            new FrmStvaranje().ShowDialog();
+            
+        }
+
+        private void btnOdustani_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
