@@ -33,6 +33,7 @@
             this.btnAzuriranje = new System.Windows.Forms.Button();
             this.btnBrisanje = new System.Windows.Forms.Button();
             this.cboPretrazivanje = new System.Windows.Forms.ComboBox();
+            this.lblImePrezimeZaposlenika = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,11 +81,21 @@
             this.cboPretrazivanje.Size = new System.Drawing.Size(179, 21);
             this.cboPretrazivanje.TabIndex = 4;
             // 
+            // lblImePrezimeZaposlenika
+            // 
+            this.lblImePrezimeZaposlenika.AutoSize = true;
+            this.lblImePrezimeZaposlenika.Location = new System.Drawing.Point(12, 10);
+            this.lblImePrezimeZaposlenika.Name = "lblImePrezimeZaposlenika";
+            this.lblImePrezimeZaposlenika.Size = new System.Drawing.Size(127, 13);
+            this.lblImePrezimeZaposlenika.TabIndex = 5;
+            this.lblImePrezimeZaposlenika.Text = "Ime i prezime zaposlenika";
+            // 
             // FrmPrikaz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblImePrezimeZaposlenika);
             this.Controls.Add(this.cboPretrazivanje);
             this.Controls.Add(this.btnBrisanje);
             this.Controls.Add(this.btnAzuriranje);
@@ -94,6 +105,7 @@
             this.Text = "Prikaz narudžbenica";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -104,6 +116,7 @@
         private System.Windows.Forms.Button btnAzuriranje;
         private System.Windows.Forms.Button btnBrisanje;
         private System.Windows.Forms.ComboBox cboPretrazivanje;
+        private System.Windows.Forms.Label lblImePrezimeZaposlenika;
     }
 }
 
