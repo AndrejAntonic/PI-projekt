@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Purchase Assistant", "Purchase Assistant\Purchase Assistant.csproj", "{6E9EA056-F807-4FE2-9141-DAB7C175851F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E9EA056-F807-4FE2-9141-DAB7C175851F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E9EA056-F807-4FE2-9141-DAB7C175851F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E9EA056-F807-4FE2-9141-DAB7C175851F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E9EA056-F807-4FE2-9141-DAB7C175851F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15DA67BA-B049-47D6-A067-D5329C3E2D39}
+	EndGlobalSection
+EndGlobal
