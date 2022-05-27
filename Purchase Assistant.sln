@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Purchase Assistant", "Purchase Assistant\Purchase Assistant.csproj", "{6E9EA056-F807-4FE2-9141-DAB7C175851F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBLayer", "DBLayer\DBLayer.csproj", "{026A7D2C-71AB-488A-9B53-7F8531D290CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6E9EA056-F807-4FE2-9141-DAB7C175851F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E9EA056-F807-4FE2-9141-DAB7C175851F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E9EA056-F807-4FE2-9141-DAB7C175851F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026A7D2C-71AB-488A-9B53-7F8531D290CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026A7D2C-71AB-488A-9B53-7F8531D290CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026A7D2C-71AB-488A-9B53-7F8531D290CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026A7D2C-71AB-488A-9B53-7F8531D290CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
