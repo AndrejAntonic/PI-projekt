@@ -91,6 +91,7 @@
             this.btnAzuriranje.TabIndex = 2;
             this.btnAzuriranje.Text = "Ažuriranje narudžbenice";
             this.btnAzuriranje.UseVisualStyleBackColor = true;
+            this.btnAzuriranje.Click += new System.EventHandler(this.btnAzuriranje_Click);
             // 
             // btnBrisanje
             // 
@@ -105,15 +106,12 @@
             // 
             // cboPretrazivanje
             // 
-            this.cboPretrazivanje.DataSource = this.zaposlenikBindingSource;
-            this.cboPretrazivanje.DisplayMember = "mail";
             this.cboPretrazivanje.FormattingEnabled = true;
             this.cboPretrazivanje.Location = new System.Drawing.Point(18, 40);
             this.cboPretrazivanje.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboPretrazivanje.Name = "cboPretrazivanje";
             this.cboPretrazivanje.Size = new System.Drawing.Size(266, 28);
             this.cboPretrazivanje.TabIndex = 4;
-            this.cboPretrazivanje.ValueMember = "Id";
             // 
             // lblMailZaposlenika
             // 

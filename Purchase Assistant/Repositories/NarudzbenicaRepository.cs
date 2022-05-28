@@ -97,7 +97,7 @@ namespace Purchase_Assistant.Repositories
         public static void InsertNarudzbenica(int idZaposlenika, string opis, string ponuditelj_1, float cijena_bez_pdv_1, float cijena_sa_pdv_1, string odabrano_1, string ponuditelj_2, float cijena_bez_pdv_2, float cijena_sa_pdv_2, string odabrano_2, int idFinanciranja, int broj_projekta, string naziv_projekta, string voditelj, string dodatno)
         {
             //string sql = $"INSERT INTO Narudzbenica (id_zaposlenika, opis_predmeta_nabave, ponuditelj_1, cijena_bez_pdv_1, cijena_sa_pdv_1, odabrana_1, ponuditelj_2, cijena_bez_pdv_2, cijena_sa_pdv_2, odabrana_2, id_financiranja, broj_projekta, naziv_projekta, voditelj_projekta, dodatno) VALUES ({idZaposlenika}, {opis}, {ponuditelj_1}, {cijena_bez_pdv_1}, {cijena_sa_pdv_1}, {odabrano_1}, {ponuditelj_2}, {cijena_bez_pdv_2}, {cijena_sa_pdv_2}, {odabrano_2}, {idFinanciranja}, {broj_projekta}, {naziv_projekta}, {voditelj}, {dodatno})";
-            string sql = $"INSERT INTO Narudzbenica VALUES ({idZaposlenika}, {opis}, {ponuditelj_1}, {cijena_bez_pdv_1}, {cijena_sa_pdv_1}, {odabrano_1}, {ponuditelj_2}, {cijena_bez_pdv_2}, {cijena_sa_pdv_2}, {odabrano_2}, {idFinanciranja}, {broj_projekta}, {naziv_projekta}, {voditelj}, {dodatno})";
+            string sql = $"INSERT INTO Narudzbenica VALUES ('{idZaposlenika}', '{opis}', '{ponuditelj_1}', '{cijena_bez_pdv_1}', '{cijena_sa_pdv_1}', '{odabrano_1}', '{ponuditelj_2}', '{cijena_bez_pdv_2}', '{cijena_sa_pdv_2}', '{odabrano_2}', '{idFinanciranja}', '{broj_projekta}', '{naziv_projekta}', '{voditelj}', '{dodatno}')";
             DB.OpenConnection();
             DB.ExecuteCommand(sql);
             DB.CloseConnection();
@@ -106,6 +106,14 @@ namespace Purchase_Assistant.Repositories
         public static void DeleteNarudzbenica(int id)
         {
             string sql = $"DELETE FROM Narudzbenica WHERE Id={id}";
+            DB.OpenConnection();
+            DB.ExecuteCommand(sql);
+            DB.CloseConnection();
+        }
+
+        public static void UpdateNarudzbenica(int id, int idZaposlenika, string opis, string ponuditelj_1, float cijena_bez_pdv_1, float cijena_sa_pdv_1, string odabrano_1, string ponuditelj_2, float cijena_bez_pdv_2, float cijena_sa_pdv_2, string odabrano_2, int idFinanciranja, int broj_projekta, string naziv_projekta, string voditelj, string dodatno)
+        {
+            string sql = $"UPDATE Narudzbenica SET ";
             DB.OpenConnection();
             DB.ExecuteCommand(sql);
             DB.CloseConnection();

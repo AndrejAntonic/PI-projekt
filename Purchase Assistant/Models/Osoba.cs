@@ -12,6 +12,7 @@ namespace Purchase_Assistant.Models
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Mail { get; set; }
+        public string PunoIme => $"{Ime} {Prezime}";
 
         public override string ToString()
         {

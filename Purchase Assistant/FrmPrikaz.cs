@@ -1,4 +1,5 @@
 ﻿using DBLayer;
+using Purchase_Assistant.Models;
 using Purchase_Assistant.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,13 @@ namespace Purchase_Assistant
             InitializeComponent();
         }
 
+        int idOdabrane;
+
         private void btnUnos_Click(object sender, EventArgs e)
         {
             FrmStvaranje frmStvaranje = new FrmStvaranje();
             frmStvaranje.ShowDialog();
+            ShowNarudzbenica();
         }
 
         private void FrmPrikaz_Load(object sender, EventArgs e)
@@ -55,6 +59,7 @@ namespace Purchase_Assistant
         {
             var narudzbenica = NarudzbenicaRepository.GetNarudzbenicas();
             dgvPrikaz.DataSource = narudzbenica;
+            dgvPrikaz.CurrentCell = null;
 
             dgvPrikaz.Columns["Id"].DisplayIndex = 0;
             dgvPrikaz.Columns[0].HeaderText = "ID narudžbenice";
@@ -88,9 +93,31 @@ namespace Purchase_Assistant
             if(rezultat == DialogResult.Yes)
             {
                 NarudzbenicaRepository.DeleteNarudzbenica(id);
-                //this.Hide();
-                FrmPrikaz f2 = new FrmPrikaz();
-                f2.ShowDialog();
+                ShowNarudzbenica();
+            }
+        }
+
+        private void btnAzuriranje_Click(object sender, EventArgs e)
+        {
+            if (dgvPrikaz.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Niste odabrali narudžbenicu koju želite ažurirati!", "Problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                idOdabrane = Convert.ToInt32(dgvPrikaz.Rows[dgvPrikaz.CurrentRow.Index].Cells[0].Value);
+                FrmStvaranje frmStvaranje = new FrmStvaranje();
+                frmStvaranje.ProvjeraZaPrikaz(idOdabrane);
+                frmStvaranje.ShowDialog();
+                /*
+                Narudzbenica selectedNarudzbenica = dgvPrikaz.CurrentRow.DataBoundItem as Narudzbenica;
+                int nez = 1;
+                if (selectedNarudzbenica != null)
+                {
+                    FrmStvaranje frmStvaranje = new FrmStvaranje(selectedNarudzbenica);
+                    frmStvaranje.ShowDialog();
+                }
+                */
             }
         }
     }

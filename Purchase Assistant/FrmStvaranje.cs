@@ -1,4 +1,5 @@
-﻿using Purchase_Assistant.Models;
+﻿using DBLayer;
+using Purchase_Assistant.Models;
 using Purchase_Assistant.Repositories;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,19 @@ namespace Purchase_Assistant
 {
     public partial class FrmStvaranje : Form
     {
+        private Narudzbenica narudzbenica;
+
+        public Narudzbenica SelectedNarudzbenica { get => narudzbenica; set => narudzbenica = value;}
+
+        int idOdabrane;
+        bool azuriranjeProvjera = false;
+
+        public FrmStvaranje(Narudzbenica selectedNarudzbenica)
+        {
+            InitializeComponent();
+            SelectedNarudzbenica = selectedNarudzbenica;
+        }
+
         public FrmStvaranje()
         {
             InitializeComponent();
@@ -43,8 +57,17 @@ namespace Purchase_Assistant
                 string voditelj_projekta = txtVoditeljProjekta.Text;
                 string dodatno = txtDodatno.Text;
                 //DateTime datum = DateTime.Now;
-                NarudzbenicaRepository.InsertNarudzbenica(IdZaposlenika, opis, ponuditelj_1, cijena_bez_pdv_1, cijena_sa_pdv_1, odabrano_1, ponuditelj_2, cijena_bez_pdv_2, cijena_sa_pdv_2, odabrano_2, IdFinanciranja, broj_projekta, naziv_projekta, voditelj_projekta, dodatno);
-                Close();
+                if (azuriranjeProvjera == false)
+                {
+                    NarudzbenicaRepository.InsertNarudzbenica(IdZaposlenika, opis, ponuditelj_1, cijena_bez_pdv_1, cijena_sa_pdv_1, odabrano_1, ponuditelj_2, cijena_bez_pdv_2, cijena_sa_pdv_2, odabrano_2, IdFinanciranja, broj_projekta, naziv_projekta, voditelj_projekta, dodatno);
+                    Close();
+                }
+                else
+                {
+                    NarudzbenicaRepository.UpdateNarudzbenica(idOdabrane, IdZaposlenika, opis, ponuditelj_1, cijena_bez_pdv_1, cijena_sa_pdv_1, odabrano_1, ponuditelj_2, cijena_bez_pdv_2, cijena_sa_pdv_2, odabrano_2, IdFinanciranja, broj_projekta, naziv_projekta, voditelj_projekta, dodatno);
+                    azuriranjeProvjera = false;
+                    Close();
+                }
             }
         }
 
@@ -57,8 +80,9 @@ namespace Purchase_Assistant
         {
             // TODO: This line of code loads data into the 'imeIPrezime.Financiranja' table. You can move, or remove it, as needed.
             //this.financiranjaTableAdapter.Fill(this.imeIPrezime.Financiranja);
+            Zaposlenik imePrezime = new Zaposlenik();
             cboZaposlenik.DataSource = ZaposlenikRepository.GetZaposleniks();
-            cboZaposlenik.DisplayMember = "Mail";
+            cboZaposlenik.DisplayMember = "PunoIme";
             cboZaposlenik.ValueMember = "Id";
             cboZaposlenik.SelectedIndex = -1;
 
@@ -66,11 +90,38 @@ namespace Purchase_Assistant
             cboFinanciranje.DisplayMember = "naziv";
             cboFinanciranje.ValueMember = "Id";
             cboFinanciranje.SelectedIndex = -1;
+            if(idOdabrane != 0)
+            {
+                this.Text = "Ažuriranje narudžbenice";
+                Narudzbenica azuriranje = NarudzbenicaRepository.GetNarudzbenica(idOdabrane);
+
+                cboZaposlenik.Text = azuriranje.zaposlenik.ToString();
+                txtOpis.Text = azuriranje.opis_predmeta_nabave;
+                txtPonuditelj1.Text = azuriranje.ponuditelj_1;
+                txtCijenaBezPDV1.Text = azuriranje.cijena_bez_pdv_1.ToString();
+                txtCijenaSaPDV1.Text = azuriranje.cijena_sa_pdv_1.ToString();
+                txtOdabrano1.Text = azuriranje.odabrana_1;
+                txtPonuditelj2.Text = azuriranje.ponuditelj_2;
+                txtCijenaBezPDV2.Text = azuriranje.cijena_bez_pdv_2.ToString();
+                txtCijenaSaPDV2.Text = azuriranje.cijena_sa_pdv_2.ToString();
+                txtOdabrano2.Text = azuriranje.odabrana_2;
+                cboFinanciranje.Text = azuriranje.financiranje.ToString();
+                txtBrojProjekta.Text = azuriranje.broj_projekta.ToString();
+                txtNazivProjekta.Text = azuriranje.naziv_projekta;
+                txtVoditeljProjekta.Text = azuriranje.voditelj_projekta;
+                txtDodatno.Text = azuriranje.dodatno;
+                azuriranjeProvjera = true;
+            }
         }
 
         private void cboZaposlenik_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void ProvjeraZaPrikaz(int id)
+        {
+            idOdabrane = id;
         }
 
         private bool ProvjeraUnosa()
