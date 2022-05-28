@@ -68,7 +68,7 @@ namespace Purchase_Assistant.Repositories
             string naziv_projekta = reader["naziv_projekta"].ToString();
             string voditelj_projekta = reader["voditelj_projekta"].ToString();
             string dodatno = reader["dodatno"].ToString();
-            //DateTime datum = DateTime.Parse(reader["datum"].ToString());
+            DateTime datum = DateTime.Parse(reader["datum"].ToString());
 
             var narudzbenica = new Narudzbenica
             {
@@ -87,8 +87,8 @@ namespace Purchase_Assistant.Repositories
                 broj_projekta = broj_projekta,
                 naziv_projekta = naziv_projekta,
                 voditelj_projekta = voditelj_projekta,
-                dodatno = dodatno
-                //datum = datum
+                dodatno = dodatno,
+                datum = datum
             };
 
             return narudzbenica;
@@ -113,7 +113,7 @@ namespace Purchase_Assistant.Repositories
 
         public static void UpdateNarudzbenica(int id, int idZaposlenika, string opis, string ponuditelj_1, float cijena_bez_pdv_1, float cijena_sa_pdv_1, string odabrano_1, string ponuditelj_2, float cijena_bez_pdv_2, float cijena_sa_pdv_2, string odabrano_2, int idFinanciranja, int broj_projekta, string naziv_projekta, string voditelj, string dodatno)
         {
-            string sql = $"UPDATE Narudzbenica SET ";
+            string sql = $"UPDATE Narudzbenica SET id_zaposlenika = '{idZaposlenika}', opis_predmeta_nabave = '{opis}', ponuditelj_1 = '{ponuditelj_1}', cijena_bez_pdv_1 = '{cijena_bez_pdv_1}', cijena_sa_pdv_1 = '{cijena_sa_pdv_1}', odabrana_1 = '{odabrano_1}', ponuditelj_2 = '{ponuditelj_2}', cijena_bez_pdv_2 = '{cijena_bez_pdv_2}', cijena_sa_pdv_2 = '{cijena_sa_pdv_2}', odabrana_2 = '{odabrano_2}', id_financiranja = '{idFinanciranja}', broj_projekta = '{broj_projekta}', naziv_projekta = '{naziv_projekta}', voditelj_projekta = '{voditelj}', dodatno = '{dodatno}', datum = GETDATE() WHERE Id = {id}";
             DB.OpenConnection();
             DB.ExecuteCommand(sql);
             DB.CloseConnection();

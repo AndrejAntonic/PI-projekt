@@ -22,6 +22,7 @@ namespace Purchase_Assistant
 
         int idOdabrane;
         bool azuriranjeProvjera = false;
+        bool pregled = false;
 
         public FrmStvaranje(Narudzbenica selectedNarudzbenica)
         {
@@ -90,7 +91,7 @@ namespace Purchase_Assistant
             cboFinanciranje.DisplayMember = "naziv";
             cboFinanciranje.ValueMember = "Id";
             cboFinanciranje.SelectedIndex = -1;
-            if(idOdabrane != 0)
+            if(idOdabrane != 0 && pregled == false)
             {
                 this.Text = "Ažuriranje narudžbenice";
                 Narudzbenica azuriranje = NarudzbenicaRepository.GetNarudzbenica(idOdabrane);
@@ -112,6 +113,43 @@ namespace Purchase_Assistant
                 txtDodatno.Text = azuriranje.dodatno;
                 azuriranjeProvjera = true;
             }
+            else if(idOdabrane != 0 && pregled == true)
+            {
+                this.Text = "Pregled narudžbenice";
+                Narudzbenica pregledNarudzbenice = NarudzbenicaRepository.GetNarudzbenica(idOdabrane);
+
+                cboZaposlenik.Text = pregledNarudzbenice.zaposlenik.ToString();
+                cboZaposlenik.Enabled = false;
+                txtOpis.Text = pregledNarudzbenice.opis_predmeta_nabave;
+                txtOpis.ReadOnly = true;
+                txtPonuditelj1.Text = pregledNarudzbenice.ponuditelj_1;
+                txtPonuditelj1.ReadOnly = true;
+                txtCijenaBezPDV1.Text = pregledNarudzbenice.cijena_bez_pdv_1.ToString();
+                txtCijenaBezPDV1.ReadOnly = true;
+                txtCijenaSaPDV1.Text = pregledNarudzbenice.cijena_sa_pdv_1.ToString();
+                txtCijenaSaPDV1.ReadOnly = true;
+                txtOdabrano1.Text = pregledNarudzbenice.odabrana_1;
+                txtOdabrano1.ReadOnly = true;
+                txtPonuditelj2.Text = pregledNarudzbenice.ponuditelj_2;
+                txtPonuditelj2.ReadOnly = true;
+                txtCijenaBezPDV2.Text = pregledNarudzbenice.cijena_bez_pdv_2.ToString();
+                txtCijenaBezPDV2.ReadOnly = true;
+                txtCijenaSaPDV2.Text = pregledNarudzbenice.cijena_sa_pdv_2.ToString();
+                txtCijenaSaPDV2.ReadOnly = true;
+                txtOdabrano2.Text = pregledNarudzbenice.odabrana_2;
+                txtOdabrano2.ReadOnly = true;
+                cboFinanciranje.Text = pregledNarudzbenice.financiranje.ToString();
+                cboFinanciranje.Enabled = false;
+                txtBrojProjekta.Text = pregledNarudzbenice.broj_projekta.ToString();
+                txtBrojProjekta.ReadOnly = true;
+                txtNazivProjekta.Text = pregledNarudzbenice.naziv_projekta;
+                txtNazivProjekta.ReadOnly = true;
+                txtVoditeljProjekta.Text = pregledNarudzbenice.voditelj_projekta;
+                txtVoditeljProjekta.ReadOnly = true;
+                txtDodatno.Text = pregledNarudzbenice.dodatno;
+                txtDodatno.ReadOnly = true;
+                pregled = false;
+            }
         }
 
         private void cboZaposlenik_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,6 +160,11 @@ namespace Purchase_Assistant
         public void ProvjeraZaPrikaz(int id)
         {
             idOdabrane = id;
+        }
+
+        public void ProvjeraZaPregled()
+        {
+            pregled = true;
         }
 
         private bool ProvjeraUnosa()

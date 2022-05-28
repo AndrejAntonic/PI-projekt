@@ -40,6 +40,7 @@
             this.lblMailZaposlenika = new System.Windows.Forms.Label();
             this.zaposlenikTableAdapter = new Purchase_Assistant.DataSets.ImeIPrezimeTableAdapters.ZaposlenikTableAdapter();
             this.narudzbenicaTableAdapter = new Purchase_Assistant.DataSets.ImeIPrezimeTableAdapters.NarudzbenicaTableAdapter();
+            this.btnPregled = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKidzaposlenikaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.zaposlenikBindingSource)).BeginInit();
@@ -112,6 +113,7 @@
             this.cboPretrazivanje.Name = "cboPretrazivanje";
             this.cboPretrazivanje.Size = new System.Drawing.Size(266, 28);
             this.cboPretrazivanje.TabIndex = 4;
+            this.cboPretrazivanje.SelectedIndexChanged += new System.EventHandler(this.cboPretrazivanje_SelectedIndexChanged);
             // 
             // lblMailZaposlenika
             // 
@@ -131,11 +133,23 @@
             // 
             this.narudzbenicaTableAdapter.ClearBeforeFill = true;
             // 
+            // btnPregled
+            // 
+            this.btnPregled.Location = new System.Drawing.Point(377, 623);
+            this.btnPregled.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPregled.Name = "btnPregled";
+            this.btnPregled.Size = new System.Drawing.Size(194, 35);
+            this.btnPregled.TabIndex = 6;
+            this.btnPregled.Text = "Pregled narudžbenice";
+            this.btnPregled.UseVisualStyleBackColor = true;
+            this.btnPregled.Click += new System.EventHandler(this.btnPregled_Click);
+            // 
             // FrmPrikaz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.Controls.Add(this.btnPregled);
             this.Controls.Add(this.lblMailZaposlenika);
             this.Controls.Add(this.cboPretrazivanje);
             this.Controls.Add(this.btnBrisanje);
@@ -168,6 +182,7 @@
         private DataSets.ImeIPrezimeTableAdapters.ZaposlenikTableAdapter zaposlenikTableAdapter;
         private System.Windows.Forms.BindingSource fKidzaposlenikaBindingSource;
         private DataSets.ImeIPrezimeTableAdapters.NarudzbenicaTableAdapter narudzbenicaTableAdapter;
+        private System.Windows.Forms.Button btnPregled;
     }
 }
 

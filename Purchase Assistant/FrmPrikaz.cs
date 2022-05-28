@@ -35,26 +35,6 @@ namespace Purchase_Assistant
             ShowNarudzbenica();
         }
 
-        private void ShowZaposlenik()
-        {
-            var zaposlenik = ZaposlenikRepository.GetZaposleniks();
-            dgvPrikaz.DataSource = zaposlenik;
-
-            dgvPrikaz.Columns["Id"].DisplayIndex = 0;
-            dgvPrikaz.Columns["Ime"].DisplayIndex = 1;
-            dgvPrikaz.Columns["Prezime"].DisplayIndex = 2;
-            dgvPrikaz.Columns["Mail"].DisplayIndex = 3;
-        }
-
-        private void ShowFinanciranja()
-        {
-            var financiranja = FinanciranjaRepository.GetFinanciranjas();
-            dgvPrikaz.DataSource = financiranja;
-
-            dgvPrikaz.Columns["Id"].DisplayIndex = 0;
-            dgvPrikaz.Columns["naziv"].DisplayIndex = 1;
-        }
-
         private void ShowNarudzbenica()
         {
             var narudzbenica = NarudzbenicaRepository.GetNarudzbenicas();
@@ -62,15 +42,15 @@ namespace Purchase_Assistant
             dgvPrikaz.CurrentCell = null;
 
             dgvPrikaz.Columns["Id"].DisplayIndex = 0;
-            dgvPrikaz.Columns[0].HeaderText = "ID narudžbenice";
+            dgvPrikaz.Columns["Id"].HeaderText = "ID narudžbenice";
             dgvPrikaz.Columns["zaposlenik"].DisplayIndex = 1;
-            dgvPrikaz.Columns[1].HeaderText = "Zaposlenik";
+            dgvPrikaz.Columns["zaposlenik"].HeaderText = "Zaposlenik";
             dgvPrikaz.Columns["opis_predmeta_nabave"].DisplayIndex = 2;
-            dgvPrikaz.Columns[2].HeaderText = "Opis narudžbenice";
+            dgvPrikaz.Columns["opis_predmeta_nabave"].HeaderText = "Opis narudžbenice";
             dgvPrikaz.Columns["naziv_projekta"].DisplayIndex = 3;
-            dgvPrikaz.Columns[3].HeaderText = "Naziv projekta";
+            dgvPrikaz.Columns["naziv_projekta"].HeaderText = "Naziv projekta";
             dgvPrikaz.Columns["datum"].DisplayIndex = 4;
-            dgvPrikaz.Columns[4].HeaderText = "Datum otvaranja narudžbenice";
+            dgvPrikaz.Columns["datum"].HeaderText = "Datum stvaranja narudžbenice";
             dgvPrikaz.Columns["ponuditelj_1"].Visible = false;
             dgvPrikaz.Columns["cijena_bez_pdv_1"].Visible = false;
             dgvPrikaz.Columns["cijena_sa_pdv_1"].Visible = false;
@@ -103,22 +83,44 @@ namespace Purchase_Assistant
             {
                 MessageBox.Show("Niste odabrali narudžbenicu koju želite ažurirati!", "Problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if(dgvPrikaz.SelectedCells.Count > 1)
+            {
+                MessageBox.Show("Odabrali ste više od jedne narudžbenice!", "Problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
                 idOdabrane = Convert.ToInt32(dgvPrikaz.Rows[dgvPrikaz.CurrentRow.Index].Cells[0].Value);
                 FrmStvaranje frmStvaranje = new FrmStvaranje();
                 frmStvaranje.ProvjeraZaPrikaz(idOdabrane);
                 frmStvaranje.ShowDialog();
-                /*
-                Narudzbenica selectedNarudzbenica = dgvPrikaz.CurrentRow.DataBoundItem as Narudzbenica;
-                int nez = 1;
-                if (selectedNarudzbenica != null)
-                {
-                    FrmStvaranje frmStvaranje = new FrmStvaranje(selectedNarudzbenica);
-                    frmStvaranje.ShowDialog();
-                }
-                */
+                ShowNarudzbenica();
             }
+        }
+
+        private void btnPregled_Click(object sender, EventArgs e)
+        {
+            if(dgvPrikaz.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Niste odabrali narudžbenicu koju želite pregledati!", "Problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if(dgvPrikaz.SelectedCells.Count > 1)
+            {
+                MessageBox.Show("Odabrali ste više od jedne narudžbenice!", "Problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                idOdabrane = Convert.ToInt32(dgvPrikaz.Rows[dgvPrikaz.CurrentRow.Index].Cells[0].Value);
+                FrmStvaranje frmStvaranje = new FrmStvaranje();
+                frmStvaranje.ProvjeraZaPrikaz(idOdabrane);
+                frmStvaranje.ProvjeraZaPregled();
+                frmStvaranje.ShowDialog();
+                ShowNarudzbenica();
+            }
+        }
+
+        private void cboPretrazivanje_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var trenutniZaposlenik = 
         }
     }
 }
