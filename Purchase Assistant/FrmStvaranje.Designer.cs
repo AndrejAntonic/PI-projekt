@@ -49,7 +49,6 @@
             this.txtCijenaBezPDV2 = new System.Windows.Forms.TextBox();
             this.txtOdabrano2 = new System.Windows.Forms.TextBox();
             this.txtPonuditelj2 = new System.Windows.Forms.TextBox();
-            this.lblIzvor = new System.Windows.Forms.Label();
             this.lblBrojProjekta = new System.Windows.Forms.Label();
             this.txtVoditeljProjekta = new System.Windows.Forms.TextBox();
             this.txtNazivProjekta = new System.Windows.Forms.TextBox();
@@ -67,6 +66,7 @@
             this.financiranjaTableAdapter = new Purchase_Assistant.DataSets.ImeIPrezimeTableAdapters.FinanciranjaTableAdapter();
             this.cboZaposlenik = new System.Windows.Forms.ComboBox();
             this.lblZaposlenik = new System.Windows.Forms.Label();
+            this.lblIzvor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.financiranjaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imeIPrezime)).BeginInit();
             this.SuspendLayout();
@@ -258,17 +258,6 @@
             this.txtPonuditelj2.Size = new System.Drawing.Size(258, 102);
             this.txtPonuditelj2.TabIndex = 19;
             // 
-            // lblIzvor
-            // 
-            this.lblIzvor.AutoSize = true;
-            this.lblIzvor.Location = new System.Drawing.Point(20, 700);
-            this.lblIzvor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblIzvor.Name = "lblIzvor";
-            this.lblIzvor.Size = new System.Drawing.Size(550, 20);
-            this.lblIzvor.TabIndex = 20;
-            this.lblIzvor.Text = "Za izvore financiranja 4. EU projekt ili 5. Komercijalni projekt navedite sljedeć" +
-    "e";
-            // 
             // lblBrojProjekta
             // 
             this.lblBrojProjekta.AutoSize = true;
@@ -326,13 +315,12 @@
             // lblDodatno
             // 
             this.lblDodatno.AutoSize = true;
-            this.lblDodatno.Location = new System.Drawing.Point(256, 749);
+            this.lblDodatno.Location = new System.Drawing.Point(254, 769);
             this.lblDodatno.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDodatno.Name = "lblDodatno";
-            this.lblDodatno.Size = new System.Drawing.Size(499, 40);
+            this.lblDodatno.Size = new System.Drawing.Size(310, 20);
             this.lblDodatno.TabIndex = 27;
-            this.lblDodatno.Text = "Dodatna pojašnjenja za izvore financiranja 6. Komercijalna djelatnost, \r\n7. Sreds" +
-    "tva proračuna i 8. Sredstva FOI, ili kod više izvora financiranja:";
+            this.lblDodatno.Text = "Dodatna pojašnjenja za izvore financiranja:";
             // 
             // txtDodatno
             // 
@@ -415,6 +403,16 @@
             this.lblZaposlenik.TabIndex = 34;
             this.lblZaposlenik.Text = "Odaberite zaposlenika:";
             // 
+            // lblIzvor
+            // 
+            this.lblIzvor.AutoSize = true;
+            this.lblIzvor.Location = new System.Drawing.Point(20, 700);
+            this.lblIzvor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIzvor.Name = "lblIzvor";
+            this.lblIzvor.Size = new System.Drawing.Size(151, 20);
+            this.lblIzvor.TabIndex = 20;
+            this.lblIzvor.Text = "Dodatne informacije";
+            // 
             // FrmStvaranje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -488,7 +486,6 @@
         private System.Windows.Forms.TextBox txtCijenaBezPDV2;
         private System.Windows.Forms.TextBox txtOdabrano2;
         private System.Windows.Forms.TextBox txtPonuditelj2;
-        private System.Windows.Forms.Label lblIzvor;
         private System.Windows.Forms.Label lblBrojProjekta;
         private System.Windows.Forms.TextBox txtVoditeljProjekta;
         private System.Windows.Forms.TextBox txtNazivProjekta;
@@ -506,5 +503,6 @@
         private DataSets.ImeIPrezimeTableAdapters.FinanciranjaTableAdapter financiranjaTableAdapter;
         private System.Windows.Forms.ComboBox cboZaposlenik;
         private System.Windows.Forms.Label lblZaposlenik;
+        private System.Windows.Forms.Label lblIzvor;
     }
 }
