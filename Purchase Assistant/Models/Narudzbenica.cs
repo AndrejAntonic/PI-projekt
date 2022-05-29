@@ -12,12 +12,12 @@ namespace Purchase_Assistant.Models
         public Zaposlenik zaposlenik { get; set; }
         public string opis_predmeta_nabave { get; set; }
         public string ponuditelj_1 { get; set; }
-        public float cijena_bez_pdv_1 { get; set; }
-        public float cijena_sa_pdv_1 { get; set; }
+        public string cijena_bez_pdv_1 { get; set; }
+        public string cijena_sa_pdv_1 { get; set; }
         public string odabrana_1 { get; set; }
         public string ponuditelj_2 { get; set; }
-        public float cijena_bez_pdv_2 { get; set; }
-        public float cijena_sa_pdv_2 { get; set; }
+        public string cijena_bez_pdv_2 { get; set; }
+        public string cijena_sa_pdv_2 { get; set; }
         public string odabrana_2 { get; set; }
         public Financiranja financiranje { get; set; }
         public int broj_projekta { get; set; }

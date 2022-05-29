@@ -22,6 +22,7 @@ namespace Purchase_Assistant
         }
 
         int idOdabrane;
+        int prvoUcitavanje = -2;
 
         private void btnUnos_Click(object sender, EventArgs e)
         {
@@ -33,6 +34,15 @@ namespace Purchase_Assistant
         private void FrmPrikaz_Load(object sender, EventArgs e)
         {
             ShowNarudzbenica();
+            ShowCBOPretrazivanje();
+        }
+
+        private void ShowCBOPretrazivanje()
+        {
+            cboPretrazivanje.DataSource = ZaposlenikRepository.GetZaposleniks();
+            cboPretrazivanje.DisplayMember = "PunoIme";
+            cboPretrazivanje.ValueMember = "Id";
+            cboPretrazivanje.ResetText();
         }
 
         private void ShowNarudzbenica()
@@ -63,7 +73,36 @@ namespace Purchase_Assistant
             dgvPrikaz.Columns["broj_projekta"].Visible = false;
             dgvPrikaz.Columns["voditelj_projekta"].Visible = false;
             dgvPrikaz.Columns["dodatno"].Visible = false;
+        }
 
+        private void PretrazivanjeNarudzbenica(object idOdabranogZaposlenika)
+        {
+            var pretrazivanjeNarudzbenice = NarudzbenicaRepository.GetNarudzbenicaWithZaposlenik(Convert.ToInt32(idOdabranogZaposlenika));
+            dgvPrikaz.DataSource = pretrazivanjeNarudzbenice;
+            dgvPrikaz.CurrentCell = null;
+
+            dgvPrikaz.Columns["Id"].DisplayIndex = 0;
+            dgvPrikaz.Columns["Id"].HeaderText = "ID narudžbenice";
+            dgvPrikaz.Columns["zaposlenik"].DisplayIndex = 1;
+            dgvPrikaz.Columns["zaposlenik"].HeaderText = "Zaposlenik";
+            dgvPrikaz.Columns["opis_predmeta_nabave"].DisplayIndex = 2;
+            dgvPrikaz.Columns["opis_predmeta_nabave"].HeaderText = "Opis narudžbenice";
+            dgvPrikaz.Columns["naziv_projekta"].DisplayIndex = 3;
+            dgvPrikaz.Columns["naziv_projekta"].HeaderText = "Naziv projekta";
+            dgvPrikaz.Columns["datum"].DisplayIndex = 4;
+            dgvPrikaz.Columns["datum"].HeaderText = "Datum stvaranja narudžbenice";
+            dgvPrikaz.Columns["ponuditelj_1"].Visible = false;
+            dgvPrikaz.Columns["cijena_bez_pdv_1"].Visible = false;
+            dgvPrikaz.Columns["cijena_sa_pdv_1"].Visible = false;
+            dgvPrikaz.Columns["odabrana_1"].Visible = false;
+            dgvPrikaz.Columns["ponuditelj_2"].Visible = false;
+            dgvPrikaz.Columns["cijena_bez_pdv_2"].Visible = false;
+            dgvPrikaz.Columns["cijena_sa_pdv_2"].Visible = false;
+            dgvPrikaz.Columns["odabrana_2"].Visible = false;
+            dgvPrikaz.Columns["financiranje"].Visible = false;
+            dgvPrikaz.Columns["broj_projekta"].Visible = false;
+            dgvPrikaz.Columns["voditelj_projekta"].Visible = false;
+            dgvPrikaz.Columns["dodatno"].Visible = false;
         }
 
         private void btnBrisanje_Click(object sender, EventArgs e)
@@ -120,7 +159,20 @@ namespace Purchase_Assistant
 
         private void cboPretrazivanje_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var trenutniZaposlenik = 
+            if(prvoUcitavanje < 0)
+            {
+                prvoUcitavanje++;
+            }
+            else
+            {
+                PretrazivanjeNarudzbenica(cboPretrazivanje.SelectedValue);
+            }
+        }
+
+        private void btnCiscenje_Click(object sender, EventArgs e)
+        {
+            cboPretrazivanje.ResetText();
+            ShowNarudzbenica();
         }
     }
 }

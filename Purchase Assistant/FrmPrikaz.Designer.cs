@@ -41,10 +41,13 @@
             this.zaposlenikTableAdapter = new Purchase_Assistant.DataSets.ImeIPrezimeTableAdapters.ZaposlenikTableAdapter();
             this.narudzbenicaTableAdapter = new Purchase_Assistant.DataSets.ImeIPrezimeTableAdapters.NarudzbenicaTableAdapter();
             this.btnPregled = new System.Windows.Forms.Button();
+            this.zaposlenikBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCiscenje = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKidzaposlenikaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.zaposlenikBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imeIPrezime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zaposlenikBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUnos
@@ -65,7 +68,7 @@
             this.dgvPrikaz.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.RowHeadersWidth = 62;
-            this.dgvPrikaz.Size = new System.Drawing.Size(1164, 497);
+            this.dgvPrikaz.Size = new System.Drawing.Size(1128, 497);
             this.dgvPrikaz.TabIndex = 1;
             // 
             // fKidzaposlenikaBindingSource
@@ -144,11 +147,27 @@
             this.btnPregled.UseVisualStyleBackColor = true;
             this.btnPregled.Click += new System.EventHandler(this.btnPregled_Click);
             // 
+            // zaposlenikBindingSource1
+            // 
+            this.zaposlenikBindingSource1.DataMember = "Zaposlenik";
+            this.zaposlenikBindingSource1.DataSource = this.imeIPrezime;
+            // 
+            // btnCiscenje
+            // 
+            this.btnCiscenje.Location = new System.Drawing.Point(291, 40);
+            this.btnCiscenje.Name = "btnCiscenje";
+            this.btnCiscenje.Size = new System.Drawing.Size(206, 34);
+            this.btnCiscenje.TabIndex = 7;
+            this.btnCiscenje.Text = "Očistite pretraživanje";
+            this.btnCiscenje.UseVisualStyleBackColor = true;
+            this.btnCiscenje.Click += new System.EventHandler(this.btnCiscenje_Click);
+            // 
             // FrmPrikaz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.ClientSize = new System.Drawing.Size(1170, 692);
+            this.Controls.Add(this.btnCiscenje);
             this.Controls.Add(this.btnPregled);
             this.Controls.Add(this.lblMailZaposlenika);
             this.Controls.Add(this.cboPretrazivanje);
@@ -164,6 +183,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fKidzaposlenikaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.zaposlenikBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imeIPrezime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zaposlenikBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,6 +203,8 @@
         private System.Windows.Forms.BindingSource fKidzaposlenikaBindingSource;
         private DataSets.ImeIPrezimeTableAdapters.NarudzbenicaTableAdapter narudzbenicaTableAdapter;
         private System.Windows.Forms.Button btnPregled;
+        private System.Windows.Forms.BindingSource zaposlenikBindingSource1;
+        private System.Windows.Forms.Button btnCiscenje;
     }
 }
 

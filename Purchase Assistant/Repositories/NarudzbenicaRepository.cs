@@ -48,6 +48,23 @@ namespace Purchase_Assistant.Repositories
             return narudzbenicas;
         }
 
+        public static List<Narudzbenica> GetNarudzbenicaWithZaposlenik(int id)
+        {
+            var narudzbenicaZaposleniks = new List<Narudzbenica>();
+
+            string sql = $"SELECT * FROM Narudzbenica WHERE id_zaposlenika = {id}";
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                Narudzbenica narudzbenicaZaposlenik = CreateObject(reader);
+                narudzbenicaZaposleniks.Add(narudzbenicaZaposlenik);
+            }
+            reader.Close();
+            DB.CloseConnection();
+            return narudzbenicaZaposleniks;
+        }
+
         private static Narudzbenica CreateObject(SqlDataReader reader)
         {
             int id = int.Parse(reader["Id"].ToString());
@@ -55,12 +72,12 @@ namespace Purchase_Assistant.Repositories
             var zaposlenik = ZaposlenikRepository.GetZaposlenik(idZaposlenik);
             string opis_predmeta_nabave = reader["opis_predmeta_nabave"].ToString();
             string ponuditelj_1 = reader["ponuditelj_1"].ToString();
-            float cijena_bez_pdv_1 = float.Parse(reader["cijena_bez_pdv_1"].ToString());
-            float cijena_sa_pdv_1 = float.Parse(reader["cijena_sa_pdv_1"].ToString());
+            string cijena_bez_pdv_1 = reader["cijena_bez_pdv_1"].ToString();
+            string cijena_sa_pdv_1 = reader["cijena_sa_pdv_1"].ToString();
             string odabrana_1 = reader["odabrana_1"].ToString();
             string ponuditelj_2 = reader["ponuditelj_2"].ToString();
-            float cijena_bez_pdv_2 = float.Parse(reader["cijena_bez_pdv_2"].ToString());
-            float cijena_sa_pdv_2 = float.Parse(reader["cijena_sa_pdv_2"].ToString());
+            string cijena_bez_pdv_2 = reader["cijena_bez_pdv_2"].ToString();
+            string cijena_sa_pdv_2 = reader["cijena_sa_pdv_2"].ToString();
             string odabrana_2 = reader["odabrana_2"].ToString();
             int idFinanciranja = int.Parse(reader["Id_financiranja"].ToString());
             var financiranja = FinanciranjaRepository.GetFinanciranja(idFinanciranja);
@@ -94,10 +111,10 @@ namespace Purchase_Assistant.Repositories
             return narudzbenica;
         }
 
-        public static void InsertNarudzbenica(int idZaposlenika, string opis, string ponuditelj_1, float cijena_bez_pdv_1, float cijena_sa_pdv_1, string odabrano_1, string ponuditelj_2, float cijena_bez_pdv_2, float cijena_sa_pdv_2, string odabrano_2, int idFinanciranja, int broj_projekta, string naziv_projekta, string voditelj, string dodatno)
+        public static void InsertNarudzbenica(int idZaposlenika, string opis, string ponuditelj_1, string cijena_bez_pdv_1, string cijena_sa_pdv_1, string odabrano_1, string ponuditelj_2, string cijena_bez_pdv_2, string cijena_sa_pdv_2, string odabrano_2, int idFinanciranja, int broj_projekta, string naziv_projekta, string voditelj, string dodatno)
         {
-            //string sql = $"INSERT INTO Narudzbenica (id_zaposlenika, opis_predmeta_nabave, ponuditelj_1, cijena_bez_pdv_1, cijena_sa_pdv_1, odabrana_1, ponuditelj_2, cijena_bez_pdv_2, cijena_sa_pdv_2, odabrana_2, id_financiranja, broj_projekta, naziv_projekta, voditelj_projekta, dodatno) VALUES ({idZaposlenika}, {opis}, {ponuditelj_1}, {cijena_bez_pdv_1}, {cijena_sa_pdv_1}, {odabrano_1}, {ponuditelj_2}, {cijena_bez_pdv_2}, {cijena_sa_pdv_2}, {odabrano_2}, {idFinanciranja}, {broj_projekta}, {naziv_projekta}, {voditelj}, {dodatno})";
-            string sql = $"INSERT INTO Narudzbenica VALUES ('{idZaposlenika}', '{opis}', '{ponuditelj_1}', '{cijena_bez_pdv_1}', '{cijena_sa_pdv_1}', '{odabrano_1}', '{ponuditelj_2}', '{cijena_bez_pdv_2}', '{cijena_sa_pdv_2}', '{odabrano_2}', '{idFinanciranja}', '{broj_projekta}', '{naziv_projekta}', '{voditelj}', '{dodatno}')";
+            string sql = $"INSERT INTO Narudzbenica (id_zaposlenika, opis_predmeta_nabave, ponuditelj_1, cijena_bez_pdv_1, cijena_sa_pdv_1, odabrana_1, ponuditelj_2, cijena_bez_pdv_2, cijena_sa_pdv_2, odabrana_2, id_financiranja, broj_projekta, naziv_projekta, voditelj_projekta, dodatno, datum) VALUES ('{idZaposlenika}', '{opis}', '{ponuditelj_1}', '{cijena_bez_pdv_1}', '{cijena_sa_pdv_1}', '{odabrano_1}', '{ponuditelj_2}', '{cijena_bez_pdv_2}', '{cijena_sa_pdv_2}', '{odabrano_2}', '{idFinanciranja}', '{broj_projekta}', '{naziv_projekta}', '{voditelj}', '{dodatno}', GETDATE())";
+            //string sql = $"INSERT INTO Narudzbenica VALUES ('{idZaposlenika}', '{opis}', '{ponuditelj_1}', '{cijena_bez_pdv_1}', '{cijena_sa_pdv_1}', '{odabrano_1}', '{ponuditelj_2}', '{cijena_bez_pdv_2}', '{cijena_sa_pdv_2}', '{odabrano_2}', '{idFinanciranja}', '{broj_projekta}', '{naziv_projekta}', '{voditelj}', '{dodatno}', GETDATE())";
             DB.OpenConnection();
             DB.ExecuteCommand(sql);
             DB.CloseConnection();
@@ -111,7 +128,7 @@ namespace Purchase_Assistant.Repositories
             DB.CloseConnection();
         }
 
-        public static void UpdateNarudzbenica(int id, int idZaposlenika, string opis, string ponuditelj_1, float cijena_bez_pdv_1, float cijena_sa_pdv_1, string odabrano_1, string ponuditelj_2, float cijena_bez_pdv_2, float cijena_sa_pdv_2, string odabrano_2, int idFinanciranja, int broj_projekta, string naziv_projekta, string voditelj, string dodatno)
+        public static void UpdateNarudzbenica(int id, int idZaposlenika, string opis, string ponuditelj_1, string cijena_bez_pdv_1, string cijena_sa_pdv_1, string odabrano_1, string ponuditelj_2, string cijena_bez_pdv_2, string cijena_sa_pdv_2, string odabrano_2, int idFinanciranja, int broj_projekta, string naziv_projekta, string voditelj, string dodatno)
         {
             string sql = $"UPDATE Narudzbenica SET id_zaposlenika = '{idZaposlenika}', opis_predmeta_nabave = '{opis}', ponuditelj_1 = '{ponuditelj_1}', cijena_bez_pdv_1 = '{cijena_bez_pdv_1}', cijena_sa_pdv_1 = '{cijena_sa_pdv_1}', odabrana_1 = '{odabrano_1}', ponuditelj_2 = '{ponuditelj_2}', cijena_bez_pdv_2 = '{cijena_bez_pdv_2}', cijena_sa_pdv_2 = '{cijena_sa_pdv_2}', odabrana_2 = '{odabrano_2}', id_financiranja = '{idFinanciranja}', broj_projekta = '{broj_projekta}', naziv_projekta = '{naziv_projekta}', voditelj_projekta = '{voditelj}', dodatno = '{dodatno}', datum = GETDATE() WHERE Id = {id}";
             DB.OpenConnection();

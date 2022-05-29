@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,12 +45,12 @@ namespace Purchase_Assistant
                 int IdZaposlenika = (int) idZaposlenika;
                 string opis = txtOpis.Text;
                 string ponuditelj_1 = txtPonuditelj1.Text;
-                float cijena_bez_pdv_1 = float.Parse(txtCijenaBezPDV1.Text, new CultureInfo("en-US"));
-                float cijena_sa_pdv_1 = float.Parse(txtCijenaSaPDV1.Text, new CultureInfo("en-US"));
+                string cijena_bez_pdv_1 = txtCijenaBezPDV1.Text;
+                string cijena_sa_pdv_1 = txtCijenaSaPDV1.Text;
                 string odabrano_1 = txtOdabrano1.Text;
                 string ponuditelj_2 = txtPonuditelj2.Text;
-                float cijena_bez_pdv_2 = float.Parse(txtCijenaBezPDV2.Text, new CultureInfo("en-US"));
-                float cijena_sa_pdv_2 = float.Parse(txtCijenaSaPDV2.Text, new CultureInfo("en-US"));
+                string cijena_bez_pdv_2 = txtCijenaBezPDV2.Text;
+                string cijena_sa_pdv_2 = txtCijenaSaPDV2.Text;
                 string odabrano_2 = txtOdabrano2.Text;
                 object idFinanciranja = cboFinanciranje.SelectedValue;
                 int IdFinanciranja = (int)idFinanciranja;
@@ -57,7 +58,6 @@ namespace Purchase_Assistant
                 string naziv_projekta = txtNazivProjekta.Text;
                 string voditelj_projekta = txtVoditeljProjekta.Text;
                 string dodatno = txtDodatno.Text;
-                //DateTime datum = DateTime.Now;
                 if (azuriranjeProvjera == false)
                 {
                     NarudzbenicaRepository.InsertNarudzbenica(IdZaposlenika, opis, ponuditelj_1, cijena_bez_pdv_1, cijena_sa_pdv_1, odabrano_1, ponuditelj_2, cijena_bez_pdv_2, cijena_sa_pdv_2, odabrano_2, IdFinanciranja, broj_projekta, naziv_projekta, voditelj_projekta, dodatno);
@@ -99,12 +99,12 @@ namespace Purchase_Assistant
                 cboZaposlenik.Text = azuriranje.zaposlenik.ToString();
                 txtOpis.Text = azuriranje.opis_predmeta_nabave;
                 txtPonuditelj1.Text = azuriranje.ponuditelj_1;
-                txtCijenaBezPDV1.Text = azuriranje.cijena_bez_pdv_1.ToString();
-                txtCijenaSaPDV1.Text = azuriranje.cijena_sa_pdv_1.ToString();
+                txtCijenaBezPDV1.Text = azuriranje.cijena_bez_pdv_1;
+                txtCijenaSaPDV1.Text = azuriranje.cijena_sa_pdv_1;
                 txtOdabrano1.Text = azuriranje.odabrana_1;
                 txtPonuditelj2.Text = azuriranje.ponuditelj_2;
-                txtCijenaBezPDV2.Text = azuriranje.cijena_bez_pdv_2.ToString();
-                txtCijenaSaPDV2.Text = azuriranje.cijena_sa_pdv_2.ToString();
+                txtCijenaBezPDV2.Text = azuriranje.cijena_bez_pdv_2;
+                txtCijenaSaPDV2.Text = azuriranje.cijena_sa_pdv_2;
                 txtOdabrano2.Text = azuriranje.odabrana_2;
                 cboFinanciranje.Text = azuriranje.financiranje.ToString();
                 txtBrojProjekta.Text = azuriranje.broj_projekta.ToString();
@@ -124,17 +124,17 @@ namespace Purchase_Assistant
                 txtOpis.ReadOnly = true;
                 txtPonuditelj1.Text = pregledNarudzbenice.ponuditelj_1;
                 txtPonuditelj1.ReadOnly = true;
-                txtCijenaBezPDV1.Text = pregledNarudzbenice.cijena_bez_pdv_1.ToString();
+                txtCijenaBezPDV1.Text = pregledNarudzbenice.cijena_bez_pdv_1;
                 txtCijenaBezPDV1.ReadOnly = true;
-                txtCijenaSaPDV1.Text = pregledNarudzbenice.cijena_sa_pdv_1.ToString();
+                txtCijenaSaPDV1.Text = pregledNarudzbenice.cijena_sa_pdv_1;
                 txtCijenaSaPDV1.ReadOnly = true;
                 txtOdabrano1.Text = pregledNarudzbenice.odabrana_1;
                 txtOdabrano1.ReadOnly = true;
                 txtPonuditelj2.Text = pregledNarudzbenice.ponuditelj_2;
                 txtPonuditelj2.ReadOnly = true;
-                txtCijenaBezPDV2.Text = pregledNarudzbenice.cijena_bez_pdv_2.ToString();
+                txtCijenaBezPDV2.Text = pregledNarudzbenice.cijena_bez_pdv_2;
                 txtCijenaBezPDV2.ReadOnly = true;
-                txtCijenaSaPDV2.Text = pregledNarudzbenice.cijena_sa_pdv_2.ToString();
+                txtCijenaSaPDV2.Text = pregledNarudzbenice.cijena_sa_pdv_2;
                 txtCijenaSaPDV2.ReadOnly = true;
                 txtOdabrano2.Text = pregledNarudzbenice.odabrana_2;
                 txtOdabrano2.ReadOnly = true;
